@@ -1,0 +1,10 @@
+# name | email | phone
+smith, JOHN | JSmith@Example.COM | 555.123.4567
+maria garcia-lopez|maria.g@college.edu|(208) 555-0199
+DE LA CRUZ, ana | ana.delacruz@mail.com | 1-208-555-0142
+bob | bob@ | 555-0100
+lee, KIM|kim.lee@cwi.edu|208 555 0175
+this line is broken
+TRAN, minh| minh tran@example.com |2085550111
+o'neil, pat | pat.oneil@example.org | +1 (986) 555-0123
+| nobody@example.com | 208-555-0000
