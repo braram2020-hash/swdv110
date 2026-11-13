@@ -7,17 +7,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-/** Recursive folder walking. Files.walk() and other built-in walkers are off-limits. */
+
 public final class FileScanner {
 
     private static final String[] UNITS = {"B", "KB", "MB", "GB", "TB"};
 
     private FileScanner() { }
 
-    /**
-     * GIVEN: the children of a folder sorted by name, or an empty array if the folder
-     * can't be read (listFiles() returns null for protected folders – this prevents a crash).
-     */
     static File[] sortedChildren(File dir) {
         File[] kids = dir.listFiles();
         if (kids == null) {
@@ -27,12 +23,9 @@ public final class FileScanner {
         return kids;
     }
 
-    // ---------------- Part 1 ----------------
 
-    /**
-     * Base case: a file's size is its length().
-     * Recursive case: a folder's size is the sum of the totalSize of each child.
-     */
+
+
     public static long totalSize(File f) {
         if (f.isFile()) {
             return f.length();
@@ -44,7 +37,7 @@ public final class FileScanner {
         return total;
     }
 
-    /** Number of FILES (not folders) in f and everything under it. A single file counts as 1. */
+
     public static int countFiles(File f) {
         if (f.isFile()) {
             return 1;
@@ -56,12 +49,7 @@ public final class FileScanner {
         return count;
     }
 
-    /**
-     * How many levels deep the nesting goes.
-     * a file, or an empty folder -> 0
-     * a folder that only contains files -> 1
-     * otherwise -> 1 + the deepest child
-     */
+
     public static int maxDepth(File f) {
         if (f.isFile() || sortedChildren(f).length == 0) {
             return 0;
@@ -76,19 +64,14 @@ public final class FileScanner {
         return 1 + deepest;
     }
 
-    // ---------------- Part 2 ----------------
 
-    /**
-     * Every file under root, in name order at each level, with paths relative to root:
-     * "a.txt", "docs/img/cat.png", "docs/notes.txt"
-     */
     public static List<FileInfo> listAll(File root) {
         List<FileInfo> result = new ArrayList<>();
         collect(root, "", result);
         return result;
     }
 
-    /** Recursive helper: adds the files in dir to out. prefix is the path so far, e.g. "docs/img/". */
+
     private static void collect(File dir, String prefix, List<FileInfo> out) {
         for (File kid : sortedChildren(dir)) {
             String kidPath = prefix.isEmpty() ? kid.getName() : prefix + "/" + kid.getName();
@@ -112,10 +95,6 @@ public final class FileScanner {
         return matches;
     }
 
-    /**
-     * Human-readable size, 1024 bytes per KB:
-     * 0 -> "0 B", 999 -> "999 B", 1536 -> "1.5 KB", 1048576 -> "1.0 MB"
-     */
     public static String humanSize(long bytes) {
         return humanSize(bytes, 0);
     }
@@ -131,11 +110,7 @@ public final class FileScanner {
         return humanSize(value / 1024.0, unit + 1);
     }
 
-    // ---------------- Part 3 ----------------
 
-    /**
-     * An indented tree, one space per level, folders end with '/', each line shows the size.
-     */
     public static String tree(File root, int maxDepth) {
         StringBuilder sb = new StringBuilder();
         tree(root, 0, maxDepth, sb);
@@ -143,7 +118,7 @@ public final class FileScanner {
     }
 
     private static void tree(File f, int depth, int maxDepth, StringBuilder sb) {
-        // Indentación de 1 espacio por cada nivel de profundidad
+    
         String indent = (depth == 0) ? "" : " ";
         String name = f.getName() + (f.isDirectory() ? "/" : "");
         String sizeStr = humanSize(totalSize(f));

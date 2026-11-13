@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-/** Hand-written searching and sorting. Collections.sort / List.sort are off-limits here. */
+
 public final class Algorithms {
 
     public static final Comparator<FileInfo> BY_SIZE_DESC =
@@ -15,7 +15,7 @@ public final class Algorithms {
 
     private Algorithms() { }
 
-    /** Returns a NEW sorted list (don't modify the input). O(n²). */
+
     public static <T> List<T> selectionSort(List<T> list, Comparator<T> cmp) {
         List<T> a = new ArrayList<>(list);
         for (int i = 0; i < a.size() - 1; i++) {
@@ -32,7 +32,7 @@ public final class Algorithms {
         return a;
     }
 
-    /** Returns a NEW sorted list. O(n log n). Stable merge sort. */
+
     public static <T> List<T> mergeSort(List<T> list, Comparator<T> cmp) {
         if (list.size() <= 1) {
             return new ArrayList<>(list);
@@ -58,7 +58,7 @@ public final class Algorithms {
         return result;
     }
 
-    /** RECURSIVE binary search over a list already sorted BY_PATH. */
+
     public static int binarySearchByPath(List<FileInfo> sortedByPath, String path) {
         return binarySearch(sortedByPath, path, 0, sortedByPath.size() - 1);
     }
@@ -78,7 +78,7 @@ public final class Algorithms {
         }
     }
 
-    /** The n largest files using YOUR mergeSort. */
+
     public static List<FileInfo> largest(List<FileInfo> files, int n) {
         List<FileInfo> sorted = mergeSort(files, BY_SIZE_DESC);
         List<FileInfo> result = new ArrayList<>();

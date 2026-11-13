@@ -33,7 +33,7 @@ class FileScannerTest {
         root = r.toFile();
     }
 
-    // ---------- Part 1 ----------
+
     @Test
     void totalSize() {
         assertEquals(2450, FileScanner.totalSize(root));
@@ -58,7 +58,7 @@ class FileScannerTest {
         assertEquals(0, FileScanner.maxDepth(new File(root, "a.txt")));
     }
 
-    // ---------- Part 2 ----------
+
     @Test
     void listAllUsesRelativePathsInNameOrder() {
         assertEquals(List.of(
